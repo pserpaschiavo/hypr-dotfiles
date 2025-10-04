@@ -1,0 +1,234 @@
+{
+
+"backlight": {
+	"interval": 2,
+	"align": 0,
+	"rotate": 0,
+	"format": "{icon}",
+	"format-icons": ["","","","","","","","","","","","","","",""],
+	"tooltip-format": "Backlight {percent}%",
+	"icon-size": 10,
+	"on-click": "",
+	"on-click-middle": "",
+	"on-click-right": "",
+	"on-update": "",
+	"on-scroll-up": "$HOME/.config/hypr/scripts/Brightness.sh --inc",
+	"on-scroll-down": "$HOME/.config/hypr/scripts/Brightness.sh --dec",
+	"smooth-scrolling-threshold": 1,
+},
+
+"battery": {
+	"interval": 300,
+	"align": 0,
+	"rotate": 0,
+	//"bat": "BAT1",
+	//"adapter": "ACAD",
+	"full-at": 100,
+	"design-capacity": false,
+	"states": {
+		"good": 95,
+		"warning": 30,
+		"critical": 15
+	},
+	"format": "{icon} {capacity}%",
+	"format-charging": " {capacity}%",
+	"format-plugged": "󱘖 {capacity}%",
+	"format-alt-click": "click",
+	"format-full": "{icon} Full",
+	"format-alt": "{icon} {time}",
+	"format-icons": [
+		"󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"
+	],
+	"format-time": "{H}h {M}min",
+	"tooltip": true,
+	"tooltip-format": "{timeTo} {power}w",
+	"on-click-middle": "$HOME/.config/hypr/scripts/ChangeBlur.sh",
+	"on-click-right": "$HOME/.config/hypr/scripts/Wlogout.sh",
+},
+"bluetooth": {
+	"format": " ",
+	"format-disabled": "󰂳",
+	"format-connected": "󰂱 {device_alias}",
+	"format-connected-battery": "󰂱 {device_alias} 󰂄{device_battery_percentage}%",
+	"tooltip-format": "Bluetooth Off - Click to open Bluetui",
+	"tooltip-format-connected": "Connected: {device_enumerate}\nClick to open Bluetui",
+	"tooltip-format-enumerate-connected": "{device_alias} {device_battery_percentage}%",
+	"tooltip": true,
+	"on-click": "/usr/bin/bluetui"
+},
+
+"clock": {
+	"interval": 1,
+	"format": " {:%H:%M:%S}"
+},
+
+"clock#date": {
+	"interval": 3600,
+	"format": " {:%A, %d %B %Y}",
+	"tooltip-format": "<tt><small>{calendar}</small></tt>",
+	"calendar": {
+		"mode": "year",
+		"mode-mon-col": 3,
+		"weeks-pos": "right",
+		"on-scroll": 1,
+		"format": {
+			"months": "<span color='#ffead3'><b>{}</b></span>",
+			"days": "<span color='#ecc6d9'><b>{}</b></span>",
+			"weeks": "<span color='#99ffdd'><b>W{:%V}</b></span>",
+			"weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+			"today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+		}
+	}
+},
+
+"hyprland/window": {
+	"format": "{}",
+	"max-length": 25,
+	"separate-outputs": true,
+	"offscreen-css": true,
+	"offscreen-css-text": "(inactive)",
+	"rewrite": {
+		"(.*) — Mozilla Firefox": "Mozilla Firefox - $1",
+		"(.*) - fish": "> [$1]",
+		"(.*) - zsh": "> [$1]",
+		"(.*) - $code": "󰨞 $1"
+	}
+},
+
+"idle_inhibitor": {
+	"tooltip": true,
+	"tooltip-format-activated": "Idle_inhibitor active",
+	"tooltip-format-deactivated": "Idle_inhibitor not active",
+	"format": "{icon}",
+	"format-icons": {
+		"activated": " ",
+		"deactivated": " "
+	}
+},
+
+"network": {
+	"format": "{ifname}",
+	"format-wifi": "{icon} {essid}",
+	"format-ethernet": "󰌘",
+	"format-disconnected": "󰌙",
+	"tooltip-format": "{ipaddr}  {bandwidthUpBits}  {bandwidthDownBits}",
+	"format-linked": "󰈁 {ifname} (No IP)",
+	"tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
+	"tooltip-format-ethernet": "{ifname} 󰌘",
+	"tooltip-format-disconnected": "󰌙 Disconnected",
+	"on-click": "ghostty -e nmtui",
+	"max-length": 30,
+	"format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
+},
+
+"pulseaudio": {
+    "format": "{volume}% {icon} ",
+    "format-muted": "  Muted",
+    "tooltip": true,
+    "tooltip-format": "{device_description}",
+    "on-click": "ghostty -e alsamixer -V playback",
+    "on-click-right": "ghostty -e alsamixer -V all",
+    "on-click-middle": "mute-sink",
+    "scroll-step": 5,
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+	"format-icons": [
+		"", "", "󰕾", ""
+	]
+},
+
+"language": {
+	"format": "Lang: {}",
+	"format-en": "US",
+	"format-tr": "Korea",
+	"keyboard-name": "at-translated-set-2-keyboard",
+	"on-click": "hyprctl switchxkblayout $SET_KB next"
+},
+
+"keyboard-state": {
+	"numlock": false,
+	"capslock": false,
+	"format": {
+		"numlock": "N {icon}",
+		"capslock": "󰪛 {icon}"
+	},
+	"format-icons": {
+		"locked": "",
+		"unlocked": ""
+	}
+},
+
+"mpris": {
+	"interval": 10,
+	"format": "{player_icon} ",
+	"format-paused": "{status_icon} <i>{dynamic}</i>",
+	"on-click-middle": "playerctl play-pause",
+	"on-click": "playerctl previous",
+	"on-click-right": "playerctl next",
+	"scroll-step": 5.0,
+	"on-scroll-up": "$HOME/.config/hypr/scripts/Volume.sh --inc",
+	"on-scroll-down": "$HOME/.config/hypr/scripts/Volume.sh --dec",
+	"smooth-scrolling-threshold": 1,
+	"tooltip": true,
+	"tooltip-format": "{status_icon} {dynamic}\nLeft Click: previous\nMid Click: Pause\nRight Click: Next",
+	"player-icons": {
+		"chromium": "",
+		"default": "",
+		"firefox": "",
+		"kdeconnect": "",
+		"mopidy": "",
+		"mpv": "󰐹",
+		"spotify": "",
+		"vlc": "󰕼",
+	},
+	"status-icons": {
+		"paused": "󰐎",
+		"playing": "",
+		"stopped": ""
+	},
+	// "ignored-players": ["firefox"]
+	"max-length": 30
+},
+
+"wireplumber": {
+	"format": "{icon} {volume} %",
+	"format-muted": " Mute",
+	"on-click": "$HOME/.config/hypr/scripts/Volume.sh --toggle",
+	"on-click-right": "pavucontrol -t 3",
+	"on-scroll-up": "$HOME/.config/hypr/scripts/Volume.sh --inc",
+	"on-scroll-down": "$HOME/.config/hypr/scripts/Volume.sh --dec",
+	"format-icons": [
+		"", "", "󰕾", ""
+	]
+},
+
+"pulseaudio#microphone": {
+	"format": "{format_source}",
+	"format-source": " {volume}%",
+	"format-source-muted": "",
+	"on-click": "$HOME/.config/hypr/scripts/Volume.sh --toggle-mic",
+	"on-click-right": "pavucontrol -t 4",
+	"on-scroll-up": "$HOME/.config/hypr/scripts/Volume.sh --mic-inc",
+	"on-scroll-down": "$HOME/.config/hypr/scripts/Volume.sh --mic-dec",
+	"tooltip-format": "{source_desc} | {source_volume}%",
+	"scroll-step": 5
+},
+
+"wlr/taskbar": {
+	"format": "{icon}",
+	"icon-size": 18,
+	"icon-theme": "Adwaita",
+	"all-outputs": true,
+	"active-first": true,
+	"tooltip-format": "{title}",
+	"on-click": "activate",
+	"on-click-middle": "close",
+	"ignore-list": [
+		"wofi",
+		"rofi",
+		"kitty-dropterm"
+	]
+}
+
+}
+
