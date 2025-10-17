@@ -122,37 +122,39 @@
 	},
 	
 "mpris": {
-	"interval": 10,
-	"format": "{player_icon}",
-	"format-paused": "{status_icon} <i>{dynamic}</i>",
-	"on-click-middle": "playerctl play-pause",
-	"on-click": "playerctl previous",
-	"on-click-right": "playerctl next",
-	"scroll-step": 5.0,
-	"on-scroll-up": "$HOME/.config/hypr/scripts/Volume.sh --inc",
-	"on-scroll-down": "$HOME/.config/hypr/scripts/Volume.sh --dec",
+	"interval": 1,
+	"format": "{player_icon}  {dynamic}",
+	"format-paused": "{player_icon}  {dynamic}",
+	"format-stopped": "",
+	"dynamic-order": ["title", "artist"],
+	"dynamic-separator": " - ",
+	"dynamic-len": 50,
+	"on-click": "playerctl play-pause",
+	"on-click-right": "ghostty -e spt",
+	"on-click-middle": "playerctl stop",
+	"on-scroll-up": "playerctl volume 0.05+",
+	"on-scroll-down": "playerctl volume 0.05-",
 	"smooth-scrolling-threshold": 1,
 	"tooltip": true,
-	"tooltip-format": "{status_icon} {dynamic}\nLeft Click: previous\nMid Click: Pause\nRight Click: Next",
+	"tooltip-format": "{status_icon} {dynamic}\n\n⏮️  Left Click: Play/Pause\n⏹️  Middle Click: Stop\n🎵 Right Click: Open Spotify TUI\n🔊 Scroll: Volume",
 	"player-icons": {
-		"chromium": "",
-		"default": "",
-		"firefox": "",
-		"kdeconnect": "",
-		"mopidy": "",
+		"chromium": "",
+		"default": "🎵",
+		"firefox": "",
+		"kdeconnect": "",
+		"mopidy": "",
 		"mpv": "󰐹",
-		"spotify": "",
-	"vlc": "󰕼"
+		"spotify": "",
+		"spotifyd": "",
+		"vlc": "󰕼"
 	},
 	"status-icons": {
-		"paused": "󰐎",
-		"playing": "",
-	"stopped": ""
+		"paused": "⏸",
+		"playing": "▶",
+		"stopped": "⏹"
 	},
-	"max-length": 30
-	},
-
-"hyprland/workspaces": {
+	"ignored-players": []
+},"hyprland/workspaces": {
 	"disable-scroll": false,
 	"all-outputs": false,
 	"warp-on-scroll": false,
@@ -183,8 +185,100 @@
     "exec": "$HOME/Dotfiles/waybar/.config/waybar/scripts/weather_wttr.py --detailed",
     "exec-if": "ping -c1 wttr.in >/dev/null 2>&1",
     "on-click": "xdg-open 'https://wttr.in' &",
-	"on-click-right": "pkill -SIGRTMIN+8 waybar",
-	}
+	"on-click-right": "pkill -SIGRTMIN+8 waybar"
+	},
+
+"custom/launcher": {
+	"format": " ",
+	"on-click": "rofi -show drun -theme ~/.config/rofi/files/launchers/type-1/style-1.rasi",
+	"on-click-right": "ghostty -e yazi",
+	"tooltip": true,
+	"tooltip-format": "Application Launcher\n\nLeft Click: Open Rofi Launcher\nRight Click: Open File Manager (Yazi)"
+},
+
+"custom/power": {
+	"format": "⏻",
+	"on-click": "~/.config/rofi/files/powermenu/type-1/powermenu.sh",
+	"tooltip": true,
+	"tooltip-format": "Power Menu\n\nClick to open power options"
+},
+
+"custom/system": {
+	"format": " ",
+	"on-click": "~/Dotfiles/scripts/rofi-menus/system-menu.sh",
+	"on-click-right": "ghostty -e btop",
+	"tooltip": true,
+	"tooltip-format": "System Menu\n\nLeft: System Settings\nRight: System Monitor"
+},
+
+"custom/network-menu": {
+	"format": "  ",
+	"on-click": "~/Dotfiles/scripts/rofi-menus/network-menu.sh",
+	"on-click-right": "ghostty -e nmtui",
+	"tooltip": true,
+	"tooltip-format": "Network Menu\n\nLeft: Network Options\nRight: Wi-Fi Manager"
+},
+
+"custom/media-menu": {
+	"format": " ",
+	"on-click": "~/Dotfiles/scripts/rofi-menus/media-menu.sh",
+	"on-click-right": "ghostty -e spt",
+	"tooltip": true,
+	"tooltip-format": "Media Menu\n\nLeft: Media Apps\nRight: Spotify TUI"
+},
+
+"custom/dev-menu": {
+	"format": " ",
+	"on-click": "~/Dotfiles/scripts/rofi-menus/dev-menu.sh",
+	"on-click-right": "ghostty -e lazygit",
+	"tooltip": true,
+	"tooltip-format": "Dev Menu\n\nLeft: Dev Tools\nRight: Lazygit"
+},
+
+"custom/utils": {
+	"format": " ",
+	"on-click": "~/Dotfiles/scripts/rofi-menus/utils-menu.sh",
+	"tooltip": true,
+	"tooltip-format": "Utilities Menu\n\nScreenshot, Clipboard, Calculator, etc."
+},
+
+"cpu": {
+	"interval": 5,
+	"format": " {usage}%",
+	"max-length": 10,
+	"on-click": "ghostty -e btop",
+	"tooltip": true,
+	"tooltip-format": "CPU: {usage}%\nClick to open btop"
+},
+
+"memory": {
+	"interval": 5,
+	"format": " {percentage}%",
+	"max-length": 10,
+	"on-click": "ghostty -e btop",
+	"tooltip": true,
+	"tooltip-format": "RAM: {used:0.1f}GB / {total:0.1f}GB ({percentage}%)"
+},
+
+"temperature": {
+	"hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+	"critical-threshold": 80,
+	"format": "{icon} {temperatureC}°C",
+	"format-icons": ["", "", "", "", ""],
+	"on-click": "ghostty -e btop",
+	"tooltip": true,
+	"tooltip-format": "Temperature: {temperatureC}°C"
+},
+
+"custom/updates": {
+	"format": " {}",
+	"interval": 3600,
+	"exec": "checkupdates | wc -l",
+	"exec-if": "exit 0",
+	"on-click": "ghostty -e yay -Syu",
+	"tooltip": true,
+	"tooltip-format": "Click to update system"
+}
 }
 
 

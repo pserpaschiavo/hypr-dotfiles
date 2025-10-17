@@ -1,0 +1,165 @@
+# Ghostty Terminal Configuration
+# Documentation: https://ghostty.org/docs
+
+####################
+### FONT SETTINGS ###
+####################
+
+# Nerd Font for icons and symbols
+font-family = "JetBrainsMono Nerd Font"
+font-size = 11
+
+# Font features
+font-style = "Regular"
+font-style-bold = "Bold"
+font-style-italic = "Italic"
+font-style-bold-italic = "Bold Italic"
+
+# Font rendering
+font-thicken = true
+adjust-cell-width = 0
+adjust-cell-height = 0
+
+######################
+### THEME AND COLORS ###
+######################
+
+# Theme: Catppuccin Mocha (Dark)
+# Will be replaced by Wallust templates later
+
+# Background and Foreground
+background = #1e1e2e
+foreground = #cdd6f4
+
+# Cursor
+cursor-color = #f5e0dc
+cursor-text = #1e1e2e
+
+# Selection
+selection-background = #585b70
+selection-foreground = #cdd6f4
+
+# Black
+palette = 0=#45475a
+palette = 8=#585b70
+
+# Red
+palette = 1=#f38ba8
+palette = 9=#f38ba8
+
+# Green
+palette = 2=#a6e3a1
+palette = 10=#a6e3a1
+
+# Yellow
+palette = 3=#f9e2af
+palette = 11=#f9e2af
+
+# Blue
+palette = 4=#89b4fa
+palette = 12=#89b4fa
+
+# Magenta
+palette = 5=#f5c2e7
+palette = 13=#f5c2e7
+
+# Cyan
+palette = 6=#94e2d5
+palette = 14=#94e2d5
+
+# White
+palette = 7=#bac2de
+palette = 15=#a6adc8
+
+####################
+### WINDOW SETTINGS ###
+####################
+
+# Window decorations
+window-decoration = false
+window-theme = dark
+
+# Padding
+window-padding-x = 8
+window-padding-y = 8
+
+# Window size
+window-width = 100
+window-height = 30
+
+# Opacity and blur
+background-opacity = 0.90
+background-blur-radius = 20
+
+# Title
+title = "Ghostty"
+
+#####################
+### BEHAVIOR ###
+#####################
+
+# Shell
+shell-integration = detect
+shell-integration-features = cursor,sudo
+
+# Scrollback
+scrollback-limit = 10000
+
+# Mouse
+mouse-hide-while-typing = true
+copy-on-select = true
+
+# Clipboard
+clipboard-read = allow
+clipboard-write = allow
+clipboard-trim-trailing-spaces = true
+
+# Confirm before closing
+confirm-close-surface = false
+
+#####################
+### KEYBINDINGS ###
+#####################
+
+# Copy/Paste
+keybind = ctrl+shift+c=copy_to_clipboard
+keybind = ctrl+shift+v=paste_from_clipboard
+
+# Font size
+keybind = ctrl+plus=increase_font_size:1
+keybind = ctrl+minus=decrease_font_size:1
+keybind = ctrl+0=reset_font_size
+
+# New window/tab
+keybind = ctrl+shift+n=new_window
+keybind = ctrl+shift+t=new_tab
+
+# Navigation
+keybind = ctrl+shift+left=previous_tab
+keybind = ctrl+shift+right=next_tab
+keybind = ctrl+shift+w=close_surface
+
+# Scrolling
+keybind = shift+page_up=scroll_page_up
+keybind = shift+page_down=scroll_page_down
+keybind = shift+home=scroll_to_top
+keybind = shift+end=scroll_to_bottom
+
+# Search
+keybind = ctrl+shift+f=toggle_quick_terminal
+
+#####################
+### ADVANCED ###
+#####################
+
+# Performance
+sync-to-monitor = true
+
+# Working directory
+working-directory = inherit
+
+# Command
+command = /bin/zsh
+
+# Auto-update
+auto-update = download

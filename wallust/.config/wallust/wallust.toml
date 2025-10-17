@@ -1,0 +1,78 @@
+# Wallust Configuration
+# https://codeberg.org/explosion-mental/wallust
+
+# ============================================================================
+# BACKEND
+# ============================================================================
+# Backend to use for color generation
+# Options: resample, kmeans, thumb, wal (pywal)
+backend = "wal"
+
+# Color space for the backend
+# Options: lab, labmixed, lch, lchmixed, rgb
+color_space = "lab"
+
+# Threshold for color similarity (0.0 - 1.0)
+threshold = 15
+
+# ============================================================================
+# PALETTE
+# ============================================================================
+# Number of colors to generate
+palette = "dark16"
+
+# Check if the generated colors fit a dark/light/any scheme
+check_contrast = true
+
+# Saturation adjustment (-100 to 100)
+# Positive values increase saturation, negative decrease
+saturate = 0.0
+
+# ============================================================================
+# TEMPLATES
+# ============================================================================
+# Templates to generate
+# Format: "template_file" = "output_file"
+
+[templates]
+# Waybar colors
+"colors-waybar.css" = "~/.config/waybar/colors-wallust.css"
+
+# Rofi colors
+"colors-rofi.rasi" = "~/.config/rofi/colors-wallust.rasi"
+
+# Dunst colors
+"colors-dunst" = "~/.config/dunst/colors-wallust"
+
+# Hyprland colors
+"hyprland-colors.conf" = "~/.config/hypr/colors-wallust.conf"
+
+# Ghostty colors
+"colors-ghostty" = "~/.config/ghostty/colors-wallust"
+
+# ============================================================================
+# PYWAL COMPATIBILITY
+# ============================================================================
+# Generate pywal cache files for compatibility with other tools
+pywal = true
+
+# ============================================================================
+# OUTPUTS
+# ============================================================================
+# Additional outputs (optional)
+# Uncomment if needed
+
+# [outputs]
+# json = "~/.cache/wallust/colors.json"
+# css = "~/.cache/wallust/colors.css"
+# scss = "~/.cache/wallust/colors.scss"
+
+# ============================================================================
+# FILTERS
+# ============================================================================
+# Filter specific colors (optional)
+# Useful to avoid colors that are too similar
+
+# [filters]
+# min_brightness = 20
+# max_brightness = 80

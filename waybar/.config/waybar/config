@@ -17,6 +17,7 @@
 "margin-right": 3,
 
 "modules-left": [
+  "custom/launcher",
   "hyprland/workspaces"
 	 ],
 
@@ -25,7 +26,7 @@
 	],
 
 "modules-right": [
-  ""
+  "custom/power"
 ]
 
 },
@@ -50,10 +51,11 @@
 //"gtk-layer-shell": true,
 
 "modules-left": [
-    
+    "tray"
     ],
 
 "modules-center": [
+	"mpris"
         ],
 
 "modules-right": [

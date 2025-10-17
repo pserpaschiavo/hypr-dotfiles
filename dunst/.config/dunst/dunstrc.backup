@@ -1,275 +1,139 @@
-# Dunst Configuration# See dunst(5) for all configuration options
-
-# https://dunst-project.org/documentation/
+# See dunst(5) for all configuration options
 
 [global]
-
-[global]    ### Display ###
-
     ### Display ###
 
-    monitor = 0    # Which monitor should the notifications be displayed on.
+    # Which monitor should the notifications be displayed on.
+    monitor = 0
 
-    follow = mouse    monitor = 0
+    # Display notification on focused monitor.  Possible modes are:
+    #   mouse: follow mouse pointer
+    #   keyboard: follow window with keyboard focus
+    #   none: don't follow anything
+    #
+    # "keyboard" needs a window manager that exports the
+    # _NET_ACTIVE_WINDOW property.
+    # This should be the case for almost all modern window managers.
+    #
+    # If this option is set to mouse or keyboard, the monitor option
+    # will be ignored.
+    follow = none
 
-    
+    ### Geometry ###
 
-    ### Geometry ###    # Display notification on focused monitor.  Possible modes are:
+    # The width of the window, excluding the frame.
+    # dynamic width from 0 to 300
+    # width = (0, 300)
+    # constant width of 300
+    width = 300
 
-    width = (300, 400)    #   mouse: follow mouse pointer
+    # The height of a single notification, excluding the frame.
+    # dynamic height from 0 to 300
+    height = (0, 300)
+    # constant height of 300
+    # height = 300
+    # NOTE: Dunst from version 1.11 and older don't support dynamic height
+    #       and the given value is treated as the maximum height
 
-    height = 300    #   keyboard: follow window with keyboard focus
+    # Position the notification in the top right corner
+    origin = top-center
 
-    origin = top-right    #   none: don't follow anything
+    # Offset from the origin
+    # NOTE: Dunst from version 1.11 and older use this alternative notation
+    # offset = 10x50
+    offset = (10, 50)
 
-    offset = 10x50    #
+    # Scale factor. It is auto-detected if value is 0.
+    scale = 0
 
-        # "keyboard" needs a window manager that exports the
+    # Maximum number of notification (0 means no limit)
+    notification_limit = 20
 
-    scale = 0    # _NET_ACTIVE_WINDOW property.
+    ### Progress bar ###
 
-    notification_limit = 5    # This should be the case for almost all modern window managers.
+    # Turn on the progress bar. It appears when a progress hint is passed with
+    # for example dunstify -h int:value:12
+    progress_bar = true
 
-        #
+    # Set the progress bar height. This includes the frame, so make sure
+    # it's at least twice as big as the frame width.
+    progress_bar_height = 10
 
-    ### Progress bar ###    # If this option is set to mouse or keyboard, the monitor option
-
-    progress_bar = true    # will be ignored.
-
-    progress_bar_height = 10    follow = none
-
+    # Set the frame width of the progress bar
     progress_bar_frame_width = 1
 
-    progress_bar_min_width = 150    ### Geometry ###
+    # Set the minimum width for the progress bar
+    progress_bar_min_width = 150
 
+    # Set the maximum width for the progress bar
     progress_bar_max_width = 300
 
-        # The width of the window, excluding the frame.
+    # Corner radius for the progress bar. 0 disables rounded corners.
+    progress_bar_corner_radius = 0
 
-    indicate_hidden = yes    # dynamic width from 0 to 300
-
-    transparency = 10    # width = (0, 300)
-
-    separator_height = 2    # constant width of 300
-
-    padding = 15    width = 300
-
-    horizontal_padding = 15
-
-    text_icon_padding = 0    # The height of a single notification, excluding the frame.
-
-    frame_width = 2    # dynamic height from 0 to 300
-
-    frame_color = "#89b4fa"    height = (0, 300)
-
-    separator_color = frame    # constant height of 300
-
-    sort = yes    # height = 300
-
-        # NOTE: Dunst from version 1.11 and older don't support dynamic height
-
-    ### Text ###    #       and the given value is treated as the maximum height
-
-    font = JetBrainsMono Nerd Font 10
-
-    line_height = 0    # Position the notification in the top right corner
-
-    markup = full    origin = top-center
-
-    format = "<b>%s</b>\n%b"
-
-    alignment = left    # Offset from the origin
-
-    vertical_alignment = center    # NOTE: Dunst from version 1.11 and older use this alternative notation
-
-    show_age_threshold = 60    # offset = 10x50
-
-    ellipsize = middle    offset = (10, 50)
-
-    ignore_newline = no
-
-    stack_duplicates = true    # Scale factor. It is auto-detected if value is 0.
-
-    hide_duplicate_count = false    scale = 0
-
-    show_indicators = yes
-
-        # Maximum number of notification (0 means no limit)
-
-    ### Icons ###    notification_limit = 20
-
-    icon_position = left
-
-    min_icon_size = 32    ### Progress bar ###
-
-    max_icon_size = 64
-
-    icon_path = /usr/share/icons/Papirus-Dark/48x48/status/:/usr/share/icons/Papirus-Dark/48x48/devices/:/usr/share/icons/Papirus-Dark/48x48/apps/    # Turn on the progress bar. It appears when a progress hint is passed with
-
-        # for example dunstify -h int:value:12
-
-    ### History ###    progress_bar = true
-
-    sticky_history = yes
-
-    history_length = 20    # Set the progress bar height. This includes the frame, so make sure
-
-        # it's at least twice as big as the frame width.
-
-    ### Misc/Advanced ###    progress_bar_height = 10
-
-    dmenu = /usr/bin/rofi -dmenu -p dunst
-
-    browser = /usr/bin/firefox    # Set the frame width of the progress bar
-
-    always_run_script = true    progress_bar_frame_width = 1
-
-    title = Dunst
-
-    class = Dunst    # Set the minimum width for the progress bar
-
-    corner_radius = 10    progress_bar_min_width = 150
-
-    ignore_dbusclose = false
-
-        # Set the maximum width for the progress bar
-
-    ### Wayland ###    progress_bar_max_width = 300
-
-    force_xwayland = false
-
-        # Corner radius for the progress bar. 0 disables rounded corners.
-
-    ### Mouse ###    progress_bar_corner_radius = 0
-
-    mouse_left_click = do_action, close_current
-
-    mouse_middle_click = close_current    # Define which corners to round when drawing the progress bar. If progress_bar_corner_radius
-
-    mouse_right_click = close_all    # is set to 0 this option will be ignored.
-
+    # Define which corners to round when drawing the progress bar. If progress_bar_corner_radius
+    # is set to 0 this option will be ignored.
     progress_bar_corners = all
 
-[experimental]
-
-    per_monitor_dpi = false    # Corner radius for the icon image.
-
+    # Corner radius for the icon image.
     icon_corner_radius = 0
 
-[urgency_low]
+    # Define which corners to round when drawing the icon image. If icon_corner_radius
+    # is set to 0 this option will be ignored.
+    icon_corners = all
 
-    background = "#1e1e2e"    # Define which corners to round when drawing the icon image. If icon_corner_radius
-
-    foreground = "#cdd6f4"    # is set to 0 this option will be ignored.
-
-    frame_color = "#89b4fa"    icon_corners = all
-
-    timeout = 5
-
-    icon = /usr/share/icons/Papirus-Dark/48x48/status/dialog-information.svg    # Show how many messages are currently hidden (because of
-
+    # Show how many messages are currently hidden (because of
     # notification_limit).
+    indicate_hidden = yes
 
-[urgency_normal]    indicate_hidden = yes
+    # The transparency of the window.  Range: [0; 100].
+    # This option will only work if a compositing window manager is
+    # present (e.g. xcompmgr, compiz, etc.). (X11 only)
+    transparency = 0
 
-    background = "#1e1e2e"
-
-    foreground = "#cdd6f4"    # The transparency of the window.  Range: [0; 100].
-
-    frame_color = "#89b4fa"    # This option will only work if a compositing window manager is
-
-    timeout = 10    # present (e.g. xcompmgr, compiz, etc.). (X11 only)
-
-    icon = /usr/share/icons/Papirus-Dark/48x48/status/dialog-information.svg    transparency = 0
-
-
-
-[urgency_critical]    # Draw a line of "separator_height" pixel height between two
-
-    background = "#1e1e2e"    # notifications.
-
-    foreground = "#f38ba8"    # Set to 0 to disable.
-
-    frame_color = "#f38ba8"    # If gap_size is greater than 0, this setting will be ignored.
-
-    timeout = 0    separator_height = 2
-
-    icon = /usr/share/icons/Papirus-Dark/48x48/status/dialog-error.svg
+    # Draw a line of "separator_height" pixel height between two
+    # notifications.
+    # Set to 0 to disable.
+    # If gap_size is greater than 0, this setting will be ignored.
+    separator_height = 2
 
     # Padding between text and separator.
+    padding = 8
 
-# Regras específicas por aplicação    padding = 8
+    # Horizontal padding.
+    horizontal_padding = 8
 
-[spotify]
-
-    appname = Spotify    # Horizontal padding.
-
-    format = "<b>🎵 %s</b>\n%b"    horizontal_padding = 8
-
-    urgency = low
-
-    timeout = 5    # Padding between text and icon.
-
+    # Padding between text and icon.
     text_icon_padding = 0
 
-[volume]
-
-    summary = "Volume"    # Defines width in pixels of frame around the notification window.
-
-    format = "<b>🔊 %s</b>\n%b"    # Set to 0 to disable.
-
-    urgency = low    frame_width = 3
-
-    timeout = 2
+    # Defines width in pixels of frame around the notification window.
+    # Set to 0 to disable.
+    frame_width = 3
 
     # Defines color of the frame around the notification window.
+    frame_color = "#aaaaaa"
 
-[brightness]    frame_color = "#aaaaaa"
-
-    summary = "Brightness"
-
-    format = "<b>🔆 %s</b>\n%b"    # Size of gap to display between notifications - requires a compositor.
-
-    urgency = low    # If value is greater than 0, separator_height will be ignored and a border
-
-    timeout = 2    # of size frame_width will be drawn around each notification instead.
-
+    # Size of gap to display between notifications - requires a compositor.
+    # If value is greater than 0, separator_height will be ignored and a border
+    # of size frame_width will be drawn around each notification instead.
     # Click events on gaps do not currently propagate to applications below.
+    gap_size = 0
 
-[battery]    gap_size = 0
-
-    appname = "Power"
-
-    format = "<b>🔋 %s</b>\n%b"    # Define a color for the separator.
-
-    urgency = normal    # possible values are:
-
-    timeout = 10    #  * auto: dunst tries to find a color fitting to the background;
-
-    #  * foreground: use the same color as the foreground;
-
-[network]    #  * frame: use the same color as the frame;
-
-    appname = "NetworkManager"    #  * anything else will be interpreted as a X color.
-
-    format = "<b>📡 %s</b>\n%b"    separator_color = frame
-
-    urgency = low
-
-    timeout = 5    # Sort type.
-
+    # Define a color for the separator.
     # possible values are:
+    #  * auto: dunst tries to find a color fitting to the background;
+    #  * foreground: use the same color as the foreground;
+    #  * frame: use the same color as the frame;
+    #  * anything else will be interpreted as a X color.
+    separator_color = frame
 
-[screenshot]    #  * id: sort by id
-
-    summary = "Screenshot"    #  * urgency_ascending: sort by urgency (low then normal then critical)
-
-    format = "<b>📸 %s</b>\n%b"    #  * urgency_descending: sort by urgency (critical then normal then low)
-
-    urgency = low    #  * update: sort by update (most recent always at the top)
-
-    timeout = 3    sort = yes
-
+    # Sort type.
+    # possible values are:
+    #  * id: sort by id
+    #  * urgency_ascending: sort by urgency (low then normal then critical)
+    #  * urgency_descending: sort by urgency (critical then normal then low)
+    #  * update: sort by update (most recent always at the top)
+    sort = yes
 
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.
